@@ -1,0 +1,58 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 50%;
+  }
+  
+  td,
+  th {
+    width: 20%;
+  }
+  
+  p {
+    font-family: Lato;
+  }
+  
+  mat-checkbox {
+    margin: 1rem;
+  }
+  
+  mat-table {
+    margin-top: 1rem;
+  }
+  .checkbox-menu li label {
+    display: block;
+    padding: 3px 10px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    margin: 0;
+    transition: background-color 0.4s ease;
+  }
+  
+  .checkbox-menu li input {
+    margin: 0px 5px;
+    top: 2px;
+    position: relative;
+  }
+  
+  .checkbox-menu li.active label {
+    background-color: #cbcbff;
+    font-weight: bold;
+  }
+  
+  .checkbox-menu li label:hover,
+  .checkbox-menu li label:focus {
+    background-color: #f5f5f5;
+  }
+  
+  .checkbox-menu li.active label:hover,
+  .checkbox-menu li.active label:focus {
+    background-color: #b8b8ff;
+  }
+  

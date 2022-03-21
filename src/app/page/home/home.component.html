@@ -1,0 +1,106 @@
+<div
+  class="content"
+  style="height: 100vh; display: flex; justify-content: center; margin-top: 50px;"
+>
+  <div class="row" style="width: 85%">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="GetAllPeople()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-icon-button color="weith" (click)="createNewPerson()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="mat-elevation-z8">
+      <table id="excel-table" mat-table [dataSource]="Datasource" matSort>
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="FamilyName">
+          <th mat-header-cell *matHeaderCellDef>Family Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.familyName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let row" style="text-align: start">
+            {{ row.address }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Country">
+          <th mat-header-cell *matHeaderCellDef>Country</th>
+          <td mat-cell *matCellDef="let row" style="text-align: start">
+            {{ row.countryOfOrigin }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let row" style="text-align: start">
+            {{ row.emailAddress }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Age">
+          <th mat-header-cell *matHeaderCellDef>Age</th>
+          <td mat-cell *matCellDef="let row" style="text-align: start">
+            {{ row.age }}
+          </td>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="Actions">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-cell
+              style="margin-top: 10px"
+              *matCellDef="let row; let i = index"
+              class="my-auto"
+            >
+              <button mat-icon-button color="accent">
+                <mat-icon aria-label="Edit" (click)="
+                startEdit(
+                  row.id,
+                  row.firstName,
+                  row.familyName,
+                  row.address,
+                  row.countryOfOrigin,
+                  row.emailAddress,
+                  row.age,
+                  row.isHired
+                )
+              ">edit </mat-icon>
+              </button>
+
+              <button mat-icon-button color="accent">
+                <mat-icon aria-label="Delete"(click)="
+                deleteItem(
+                  row.id,
+                  row.firstName,
+                  row.familyName,
+                  row.address,
+                  row.countryOfOrigin,
+                  row.emailAddress,
+                  row.age,
+                  row.isHired
+                )
+              ">delete</mat-icon>
+              </button>
+            </mat-cell>
+          </mat-header-cell>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page of users"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

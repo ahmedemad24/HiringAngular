@@ -1,0 +1,169 @@
+<div class="container">
+  <h3 mat-dialog-title>Edit Movie</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          class="form-control"
+          placeholder="First Name"
+          [(ngModel)]="data.name"
+          name="name"
+          #formC="ngModel"
+          minlength="5"
+          required
+        />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          formC.invalid && (formC.touched || formC.dirty)
+        "
+        >{{ getErrorMessage() }}</mat-error
+      >
+    </div>
+    <p
+      style="color: crimson"
+      *ngIf="formC.errors?.minlength && (formC.touched || formC.dirty)"
+    >
+      Name must be at least 5 characters long.
+    </p>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          #inputstate
+          class="form-control"
+          placeholder="Family Name "
+          [(ngModel)]="data.familyName"
+          name="familyName"
+          #formF="ngModel"
+          required
+          minlength="5"
+        />
+        <mat-error
+          *ngIf="
+            formControl.invalid && (formControl.touched || formControl.dirty)
+          "
+          >{{ getErrorMessage() }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <p
+      style="color: crimson"
+      *ngIf="formF.errors?.minlength && (formF.touched || formF.dirty)"
+    >
+      Name must be at least 5 characters long.
+    </p>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          #inputstate
+          class="form-control"
+          placeholder="Address"
+          [(ngModel)]="data.address"
+          name="address"
+          minlength="10"
+          #formA="ngModel"
+          required
+        />
+        <mat-error
+          *ngIf="
+            formControl.invalid && (formControl.touched || formControl.dirty)
+          "
+          >{{ getErrorMessage() }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <p
+      style="color: crimson"
+      *ngIf="formA.errors?.minlength && (formA.touched || formA.dirty)"
+    >
+      Name must be at least 10 characters long.
+    </p>
+
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <mat-select
+          required
+          placeholder="Egypt"
+          [(ngModel)]="data.countryOfOrigin"
+          name="countryOfOrigin"
+        >
+          <mat-option
+            *ngFor="let item of dataCountries"
+            value="{{ item.name.common }}"
+            >{{ item.name.common }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          matInput
+          type="email"
+          name="emailAddress"
+          placeholder="Email Ex: abc@gmail.com"
+          [(ngModel)]="data.emailAddress"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+          #emailerror="ngModel"
+          pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{4,}[.]{1}[a-zA-Z]{3,}"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div *ngIf="emailerror.invalid && (emailerror.dirty || emailerror.touched)">
+      <div *ngIf="emailerror.errors?.required">
+        <span style="background-color: red">Email is required </span>
+      </div>
+      <div *ngIf="emailerror.errors?.pattern">
+        <span style="background-color: red">Invalid EmailL </span>
+      </div>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input
+          type="number"
+          matInput
+          #inputstate
+          placeholder="Age"
+          [(ngModel)]="data.age"
+          name="Age"
+          min="20"
+          max="60"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div style="margin-top: 15px">
+      <mat-checkbox
+        name="Is Hired"
+        [(ngModel)]="data.isHired"
+        [ngModelOptions]="{ standalone: true }"
+        class="example-margin"
+        >Is Hired</mat-checkbox
+      >
+    </div>
+
+    <div mat-dialog-actions>
+      <button
+        mat-button
+        type="submit"
+        [disabled]="!formControl.valid"
+        [mat-dialog-close]="1"
+        (click)="confirmEdit()"
+      >
+        Save
+      </button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>
