@@ -1,10 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PersonService } from 'src/app/services/person.service';
 import { ToastrService } from 'ngx-toastr';
-import { PersonModel } from 'src/app/models/personModel';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
   selector: 'app-create-person',
